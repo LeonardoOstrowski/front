@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import {API_URL} from "../../api/constants";
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -15,7 +16,7 @@ function Login() {
                 "password": senha
             };
 
-            let resp = await axios.post('http://localhost:3010/api/users/login', body);
+            let resp = await axios.post(`${API_URL}/api/users/login`, body);
 
             localStorage.setItem('TOKEN', resp.data.token);
 
