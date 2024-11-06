@@ -1,13 +1,26 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const handleLoginClick = () => {
-        navigate('/login');
+    useEffect(() => {
+        const token = localStorage.getItem('TOKEN');
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLoginLogoutClick = () => {
+        const token = localStorage.getItem('TOKEN');
+        if (token) {
+            localStorage.removeItem('TOKEN');
+            setIsLoggedIn(false);
+            navigate('/');
+        } else {
+            navigate('/login');
+        }
     };
+
     const handleHomeClick = () => {
         navigate('/');
     };
@@ -21,8 +34,8 @@ function Header() {
                     <a href="#servicos">Serviços</a>
                     <a href="#contato">Contato</a>
                 </nav>
-                <button className="login-button" onClick={handleLoginClick}>
-                    Login
+                <button className="login-button" onClick={handleLoginLogoutClick}>
+                    {isLoggedIn ? "Deslogar" : "Login"}
                 </button>
             </div>
         </header>
