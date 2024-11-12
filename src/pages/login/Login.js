@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import {API_URL} from "../../api/constants";
+import { API_URL } from "../../api/constants";
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
 
     async function logar(event) {
-        event.preventDefault(); // Impede a recarga da página
+        event.preventDefault();
         try {
             let body = {
                 "name": login,
@@ -23,14 +23,23 @@ function Login() {
             navigate('/admin');
 
         } catch (err) {
-            console.log(err.response); // Adicione isso para ver o erro completo
-            alert("Ocorreu um erro ao processar o login.");
+            if (err.response && err.response.data) {
+                if (err.response.data.error === 'Usuário ou senha incorretos') {
+                    alert('Usuário ou senha incorretos');
+                } else if (err.response.data.error === 'Usuário não encontrado') {
+                    alert('Usuário não encontrado');
+                } else {
+                    alert('Ocorreu um erro ao processar o login.');
+                }
+            } else {
+                alert('Erro de conexão com o servidor. Tente novamente mais tarde.');
+            }
         }
     }
 
     return (
         <div className="login-form">
-            <form onSubmit={logar}> {/* Adicione o onSubmit ao formulário */}
+            <form onSubmit={logar}>
                 <label>Login</label>
                 <input
                     type='text'
@@ -43,10 +52,11 @@ function Login() {
                     value={senha}
                     onChange={e => setSenha(e.target.value)}
                 />
-                <button type="submit"> {/* O tipo submit é importante aqui */}
+                <button type="submit">
                     Entrar
                 </button>
             </form>
+
         </div>
     );
 }
