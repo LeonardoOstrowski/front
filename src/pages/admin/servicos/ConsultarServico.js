@@ -167,10 +167,18 @@ function ConsultarServico() {
                     <li>
                         <h3
                             className={''}
+                            onClick={() => navigate('/admin/grafico')}
+                        >
+                            Gráfico de Serviços
+                        </h3>
+                    </li>
+                    <li>
+                        <h4
+                            className={''}
                             onClick={() => navigate('/')}
                         >
                             Home
-                        </h3>
+                        </h4>
                     </li>
                 </ul>
             </aside>

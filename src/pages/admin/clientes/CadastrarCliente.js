@@ -6,19 +6,18 @@ import { API_URL } from "../../../api/constants";
 function CadastrarCliente() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
-    const [serviceId, setServiceId] = useState(''); // Para armazenar o ID do serviço
+    const [serviceId, setServiceId] = useState('');
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
     const [cpf, setCpf] = useState('');
     const [loading, setLoading] = useState(false);
-    const [services, setServices] = useState([]); // Estado para armazenar a lista de serviços
+    const [services, setServices] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem('TOKEN') === undefined) {
             navigate('/login');
         }
 
-        // Buscar os serviços disponíveis
         const fetchServices = async () => {
             try {
                 const token = localStorage.getItem('TOKEN');
@@ -48,7 +47,7 @@ function CadastrarCliente() {
         try {
             const body = {
                 'nome': name,
-                'servico_id': serviceId, // Envia o ID do serviço selecionado
+                'servico_id': serviceId,
                 'endereco': address,
                 'telefone': phone,
                 'cpf': cpf
@@ -74,7 +73,8 @@ function CadastrarCliente() {
                         <h1 onClick={() => navigate('/admin/consultar/clientes')}>Consultar Clientes</h1>
                     </li>
                     <li>
-                        <h2 className={'selected'} onClick={() => navigate('/admin/cadastrar/clientes')}>Cadastrar Cliente</h2>
+                        <h2 className={'selected'} onClick={() => navigate('/admin/cadastrar/clientes')}>Cadastrar
+                            Cliente</h2>
                     </li>
                     <li>
                         <h2 onClick={() => navigate('/admin/consultar/servicos')}>Consultar Serviços</h2>
@@ -83,7 +83,15 @@ function CadastrarCliente() {
                         <h2 onClick={() => navigate('/admin/cadastrar/servico')}>Cadastrar Serviço</h2>
                     </li>
                     <li>
-                        <h3 onClick={() => navigate('/')}>Home</h3>
+                        <h3
+                            className={''}
+                            onClick={() => navigate('/admin/grafico')}
+                        >
+                            Gráfico de Serviços
+                        </h3>
+                    </li>
+                    <li>
+                        <h4 onClick={() => navigate('/')}>Home</h4>
                     </li>
                 </ul>
             </aside>

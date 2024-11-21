@@ -89,7 +89,7 @@ function ConsultarCliente() {
         if (clientToEdit) {
             setEditClientData({
                 nome: clientToEdit.nome,
-                servico_id: clientToEdit.servico_id,  // Agora estamos pegando o servico_id
+                servico_id: clientToEdit.servico_id,
                 endereco: clientToEdit.endereco,
                 telefone: clientToEdit.telefone,
                 cpf: clientToEdit.cpf
@@ -186,10 +186,18 @@ function ConsultarCliente() {
                     <li>
                         <h3
                             className={''}
+                            onClick={() => navigate('/admin/grafico')}
+                        >
+                            Gráfico de Serviços
+                        </h3>
+                    </li>
+                    <li>
+                        <h4
+                            className={''}
                             onClick={() => navigate('/')}
                         >
                             Home
-                        </h3>
+                        </h4>
                     </li>
                 </ul>
             </aside>
@@ -203,7 +211,6 @@ function ConsultarCliente() {
                         onChange={(e) => setSearchName(e.target.value)} // Alterado para searchName
                     />
                     <button className="search-button" onClick={handleSearch}>Consultar Nome</button>
-                    {/* Alterado para 'Consultar Nome' */}
                 </div>
 
                 {loading && <p>Carregando...</p>}

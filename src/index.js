@@ -9,6 +9,7 @@ import ConsultarIndex from "./pages/admin/clientes/ConsultarIndex";
 import CadastrarIndex from "./pages/admin/clientes/CadastrarIndex";
 import ConsultarServicoIndex from "./pages/admin/servicos/ConsultarServicoIndex";
 import CadastrarServicoIndex from "./pages/admin/servicos/CadastrarServicoIndex";
+import Grafico from "./pages/admin/grafico/Grafico";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
                 <Route path='/admin/cadastrar/clientes' element={<CadastrarIndex />} />
                 <Route path='/admin/consultar/servicos' element={<ConsultarServicoIndex />} />
                 <Route path='/admin/cadastrar/servico' element={<CadastrarServicoIndex />} />
+                <Route path='/admin/grafico' element={<Grafico />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
