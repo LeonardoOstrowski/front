@@ -22,10 +22,10 @@ function Grafico() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        /*if (localStorage.getItem("TOKEN") === undefined) {
+        if (localStorage.getItem("TOKEN") === undefined) {
             navigate("/login");
             return;
-        }*/
+        }
 
         const fetchServices = async () => {
             try {
